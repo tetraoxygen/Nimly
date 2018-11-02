@@ -1,0 +1,11 @@
+{{boilerplate}}
+
+for stupid mode:
+	get random value between 0 and 1.
+	if 1:
+		set userGoesFirst = true
+	else if 0:
+		set userGoesFirst = false
+	else:
+		x
+		abort;

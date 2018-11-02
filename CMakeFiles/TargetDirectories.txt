@@ -1,0 +1,3 @@
+/home/tetraoxygen/Nimly/CMakeFiles/rebuild_cache.dir
+/home/tetraoxygen/Nimly/CMakeFiles/Nimly.dir
+/home/tetraoxygen/Nimly/CMakeFiles/edit_cache.dir

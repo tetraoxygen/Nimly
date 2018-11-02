@@ -1,0 +1,176 @@
+//©2018 Tetraoxygen Software, Charlie Welsh
+#include <iostream>
+#include <string>
+#include <math.h>
+
+using namespace std;
+int main()
+{
+  //Gets a seed for randomness.
+  srand(time(NULL));
+  int exponent;
+  int powersOfTwo;
+  string mode;
+  string errorReply;
+  bool gameStarted = false;
+  int marbleCount;
+  //Current player: 0 is human, 1 is computer.
+  int currentPlayer;
+  int halfMarbles;
+  int playerTake;
+  int computerTake;
+  int maxMarbles;
+  int i = 0;
+  //      int powersOfTwo[5] = {63, 31, 15, 7, 3};
+  cout << "Nimly, by Charlie Welsh, from Tetraoxygen Software. Copyright 2018." << endl;
+  //Displays the options the user has.
+  cout << "Nimly has 2 modes, Jeff Dean, and Village Fool. Which would you prefer?" << endl
+	   << "Type \'j\', \'jd\', \'1\', \'v\', \'vf\', \'2\', \'h\', or \'help\'." << endl
+	   << "> ";
+  while (gameStarted == false) {
+	cin >> mode;
+	if ((mode == "j") || (mode == "jd") || (mode == "1")) {
+	  cout << "You've selected Jeff Dean mode. Good luck." << endl;
+	  mode = "dean";
+	  gameStarted = true;
+	}
+	else if ((mode == "v") || (mode == "vf") || (mode == "2")) {
+	  cout << "You've selected Village Fool mode. This should be winnable." << endl;
+	  mode = "fool";
+	  gameStarted = true;
+	}
+	else if ((mode == "h") || (mode == "help")) {
+	  //Discourages poor souls from choosing Jeff Dean mode.
+	  cout << "Jeff Dean mode is intelligent. Jeff Dean mode is thinking. Jeff Dean mode will almost always win." << endl
+		   << "Village Fool mode just guesses randomly, and hopes that it'll win. It often doesn't." << endl
+		   << "> ";
+	  gameStarted = false;
+	}
+	else {
+	  cout << "Type \'j\', \'jd\', \'1\', \'v\', \'vf\', \'2\', \'h\', or \'help\'." << endl
+		   << "> ";
+	  gameStarted = false;
+	}
+  }
+  //Decides who goes first.
+  currentPlayer = rand() % 2;
+  marbleCount = (rand() % 96) + 5;
+  while (marbleCount > 0) {
+	if (currentPlayer == 1) {
+	  cout << "There are " << marbleCount << " marbles left. Of those, you can take " << marbleCount / 2 << ". How many would you like to take?" << endl;
+	  cin >> playerTake;
+	  if (playerTake > marbleCount / 2 || playerTake < 0) {
+		maxMarbles = marbleCount / 2;
+		cout << "You can't take that amount. Would you like to take " << marbleCount / 2 << " marbles, instead?" << endl
+			 << "Type \'y\', \'yes\', \'n\', or \'no\'." << endl;
+		cin >> errorReply;
+		if ((errorReply == "y") || (errorReply == "yes")) {
+		  playerTake = marbleCount / 2;
+		  cout << playerTake << endl;
+		}
+		else if ((errorReply == "n") || (errorReply == "no")) {
+		  cout << "Type up to " << marbleCount / 2 << "marbles." << endl;
+		}
+	  }
+	  else {
+	  }
+	  marbleCount = marbleCount - playerTake;
+	  cout << "There are now " << marbleCount << " marbles remaining." << endl;
+	  if (marbleCount < 2) {
+		cout << "You lost. Go home." << endl;
+	  }
+	  else {
+		currentPlayer = 0;
+	  }
+	}
+	else if (currentPlayer == 0) {
+	  if (mode == "fool") {
+		halfMarbles = rand() % (marbleCount / 2);
+		cout << "There are " << marbleCount << " marbles left. The computer took " << halfMarbles << " marbles. There are " << marbleCount - halfMarbles << " marbles remaining." << endl;
+		marbleCount = marbleCount - halfMarbles;
+		if (marbleCount < 2) {
+		  cout << "You won. Go home." << endl;
+		}
+		else {
+		  currentPlayer = 1;
+		}
+	  }
+	}
+	else if (mode == "dean") {
+	  if ((marbleCount == 3) || (marbleCount == 7) || (marbleCount == 15) || (marbleCount == 31) || (marbleCount == 63)) {
+		halfMarbles = rand() % (marbleCount / 2);
+		cout << "There are " << marbleCount << " marbles left. The computer took " << halfMarbles << " marbles. There are " << marbleCount - halfMarbles << " marbles remaining." << endl;
+		marbleCount = marbleCount - halfMarbles;
+		if (marbleCount < 2) {
+		  cout << "You won. Go home." << endl;
+		}
+		else {
+		  currentPlayer = 1;
+		}
+	  }
+	}
+	else {
+	  unsigned int i = 1;
+	  int prevMarbles = marbleCount;
+
+	  while ((i *= 2) < marbleCount) {
+	  }
+
+	  marbleCount = (i / 2) - 1;
+	  /*
+            while (marbleCount > powersOfTwo){
+                  exponent = i+2;
+                  powersOfTwo = pow(2, exponent)-1;
+                  computerTake = powersOfTwo;
+                  cout << "powersOfTwo[" << i << "is " << powersOfTwo<< endl;
+                  cout << powersOfTwo << endl;
+                  i++;
+                  cout << i << endl;
+                  }*/
+	  cout << "The computer took " << prevMarbles - marbleCount << " marbles. There are " << marbleCount << " marbles left." << endl;
+	  computerTake = 0;
+	  if (marbleCount < 2) {
+		cout << "You won. Go home." << endl;
+	  }
+	  else {
+		currentPlayer = 0;
+	  }
+	  if (marbleCount < 2) {
+		cout << "You lost. Go home." << endl;
+	  }
+	  else {
+		currentPlayer = 0;
+		                01
+						  }
+	}
+	else if (currentPlayer == 0)
+	  {
+		if (mode == "fool") {
+		  halfMarbles = rand() % (marbleCount / 2);
+		  cout << "There are " << marbleCount << " marbles left. The computer took " << halfMarbles << " marbles. There are " << marbleCount - halfMarbles << " marbles remaining." << endl;
+		  marbleCount = marbleCount - halfMarbles;
+		  if (marbleCount < 2) {
+			cout << "You won. Go home." << endl;
+		  }
+		  else {
+			currentPlayer = 1;
+		  }
+		}
+	  }
+	else if (mode == "dean")
+	  {
+		if ((marbleCount == 3) || (marbleCount == 7) || (marbleCount == 15) || (marbleCount == 31) || (marbleCount == 63)) {
+		  halfMarbles = rand() % (marbleCount / 2);
+		  cout << "There are " << marbleCount << " marbles left. The computer took " << halfMarbles << " marbles. There are " << marbleCount - halfMarbles << " marbles remaining." << endl;
+		  marbleCount = marbleCount - halfMarbles;
+		  if (marbleCount < 2) {
+			cout << "You won. Go home." << endl;
+		  }
+		  else {
+			currentPlayer = 1;
+		  }
+		} else {
+		  cout << "Jeff Dean Mode Engaged." << endl;
+		}
+	  }
+  }
