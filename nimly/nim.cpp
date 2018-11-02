@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+using namespace std;
 
-	using namespace std;
 int main() {
 	//Gets a seed for randomness.
 	srand(time(NULL));
@@ -104,8 +104,30 @@ int main() {
 						currentPlayer = 1;
 					}
 				} else {
-					cout << "This is Jeff Dean mode. Still in alpha." << endl;
-					currentPlayer = 1;
+					// Spaghetti code that works.
+					
+					if (marbleCount > 63) {
+					  	halfMarbles = marbleCount - 63;
+					} else if (marbleCount < 63 && marbleCount > 31) {
+					  	halfMarbles = marbleCount - 31;
+					} else if (marbleCount < 31 && marbleCount > 15) {
+					  	halfMarbles = marbleCount - 15;
+					} else if (marbleCount < 15 && marbleCount > 7) {
+					  	halfMarbles = marbleCount - 7;
+					} else if (marbleCount < 7 && marbleCount > 3) {
+					  	halfMarbles = marbleCount - 3;
+					}
+					if (halfMarbles == 0 || marbleCount == 1) {
+						halfMarbles = 1;
+					} else {}
+				   	cout << "There are " << marbleCount << " marbles left. The computer took " << halfMarbles << " marbles. There are " << marbleCount - halfMarbles << " marbles remaining." << endl;
+					marbleCount = marbleCount - halfMarbles;
+					if (marbleCount < 2) {
+					 	cout << "You won. Go home." << endl;
+					 	abort();
+					} else {
+						currentPlayer = 1;
+					}
 				}
 			}
 		}
